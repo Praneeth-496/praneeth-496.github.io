@@ -1,14 +1,485 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Praneeth Dathu - Portfolio</title>
-    <script type="module" crossorigin src="/assets/index-BYJRFeQO.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DWZkNI_W.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praneeth Koppula - AI Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header/Hero Section */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: fadeInDown 1s ease;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Content Card */
+        .content {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 40px;
+            border-bottom: 1px solid #eee;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        section h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            font-size: 1.8rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            margin: 0 auto;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .skill-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .tag {
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            border-left: 4px solid #667eea;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+        }
+
+        .project-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .contact-item a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Praneeth Koppula</h1>
+            <p>MSc Artificial Intelligence Student | AI Researcher | Data Scientist</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="#projects" class="btn btn-secondary">View Projects</a>
+            </div>
+        </header>
+
+        <div class="content">
+            <!-- About Section -->
+            <section id="about">
+                <h2><span class="section-icon">👨‍💻</span>About Me</h2>
+                <div class="about-content">
+                    <div class="profile-img">PK</div>
+                    <div>
+                        <p style="font-size: 1.1rem; line-height: 1.8;">
+                            I'm a passionate AI student at Leiden University, specializing in machine learning, natural language processing, and healthcare AI applications. 
+                            With hands-on experience in developing ML pipelines and predictive models, I'm driven by the potential of AI to solve real-world problems.
+                        </p>
+                        <p style="margin-top: 15px; font-size: 1.1rem; line-height: 1.8;">
+                            Currently seeking internship opportunities to apply my skills in AI & Data Science, particularly in meaningful domains like healthcare and clinical prediction.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills">
+                <h2><span class="section-icon">🚀</span>Skills & Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>Machine Learning</h3>
+                        <p>Building and deploying ML models for various applications</p>
+                        <div class="skill-tags">
+                            <span class="tag">Scikit-learn</span>
+                            <span class="tag">TensorFlow</span>
+                            <span class="tag">PyTorch</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Natural Language Processing</h3>
+                        <p>Transformer models and text analysis</p>
+                        <div class="skill-tags">
+                            <span class="tag">Hugging Face</span>
+                            <span class="tag">DistilBERT</span>
+                            <span class="tag">NER</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Data Science</h3>
+                        <p>Data analysis and visualization</p>
+                        <div class="skill-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Pandas</span>
+                            <span class="tag">NumPy</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Deep Learning</h3>
+                        <p>Neural networks and model optimization</p>
+                        <div class="skill-tags">
+                            <span class="tag">Transformers</span>
+                            <span class="tag">CNNs</span>
+                            <span class="tag">RNNs</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects">
+                <h2><span class="section-icon">💼</span>Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Named Entity Recognition for Archaeology</h3>
+                        <p>Developed a NER system using DistilBERT to extract entities from archaeological texts, improving information extraction accuracy.</p>
+                        <div class="project-tech">
+                            <span class="tag">DistilBERT</span>
+                            <span class="tag">Hugging Face</span>
+                            <span class="tag">NLP</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>Healthcare Predictive Models</h3>
+                        <p>Built machine learning models for clinical prediction, focusing on patient outcomes and treatment optimization.</p>
+                        <div class="project-tech">
+                            <span class="tag">Python</span>
+                            <span class="tag">Scikit-learn</span>
+                            <span class="tag">Healthcare AI</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>ML Pipeline Development</h3>
+                        <p>Designed and implemented end-to-end ML pipelines at Digital Ellanky, from data preprocessing to model deployment.</p>
+                        <div class="project-tech">
+                            <span class="tag">MLOps</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Data Engineering</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education & Experience -->
+            <section id="experience">
+                <h2><span class="section-icon">🎓</span>Education & Experience</h2>
+                <div style="margin-top: 20px;">
+                    <div style="margin-bottom: 30px;">
+                        <h3 style="color: #667eea; margin-bottom: 8px;">MSc Artificial Intelligence</h3>
+                        <p style="color: #666; margin-bottom: 5px;"><strong>Leiden University</strong></p>
+                        <p style="color: #888;">Specializing in Machine Learning, NLP, and AI Applications</p>
+                    </div>
+                    <div style="margin-bottom: 30px;">
+                        <h3 style="color: #667eea; margin-bottom: 8px;">AI Researcher</h3>
+                        <p style="color: #666; margin-bottom: 5px;"><strong>Digital Ellanky</strong></p>
+                        <p style="color: #888;">Developed ML pipelines and predictive models for various applications</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact">
+                <h2><span class="section-icon">📬</span>Get In Touch</h2>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <a href="mailto:your.email@example.com">Email Me</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">💼</span>
+                        <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">💻</span>
+                        <a href="https://github.com/yourprofile" target="_blank">GitHub</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📄</span>
+                        <a href="#" download>Download Resume</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Praneeth Koppula. Built with passion for AI.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
 </html>
