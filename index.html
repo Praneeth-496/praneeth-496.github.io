@@ -740,6 +740,26 @@
             }
         }
 
+        /* Photo Instructions */
+        .photo-instructions {
+            background: var(--bg-card);
+            border: 2px dashed var(--accent-cyan);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            color: var(--text-secondary);
+        }
+
+        .photo-instructions h4 {
+            color: var(--accent-cyan);
+            margin-bottom: 10px;
+        }
+
+        .photo-instructions p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
         @media (max-width: 480px) {
             header h1 {
                 font-size: 2rem;
@@ -835,7 +855,12 @@
                 <h2><span class="section-icon">🤖</span>About Me</h2>
                 <div class="about-content">
                     <div>
-                        <img src="https://via.placeholder.com/250" alt="Praneeth Dathu" class="profile-img">
+                        <img src="profile.jpg" alt="Praneeth Dathu" class="profile-img" onerror="this.style.display='none'">
+                        <div class="photo-instructions">
+                            <h4>📸 How to Add Your Photo</h4>
+                            <p>Save your photo as <strong>profile.jpg</strong> in the same folder as this HTML file. Make sure the image is square (250x250px or larger).</p>
+                            <p style="margin-top: 10px;">Or replace <code style="background: var(--bg-secondary); padding: 2px 6px; border-radius: 4px;">"profile.jpg"</code> with your image filename/URL.</p>
+                        </div>
                     </div>
                     <div class="about-text">
                         <p>
