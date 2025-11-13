@@ -196,6 +196,9 @@
             cursor: pointer;
             color: var(--text-secondary);
             transition: all 0.3s ease;
+            background: none;
+            border: none;
+            padding: 0;
         }
 
         .close-modal:hover {
@@ -369,6 +372,20 @@
             grid-template-columns: 1fr 2fr;
             gap: 40px;
             align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--text-secondary);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .about-text strong {
+            color: var(--accent-cyan);
         }
 
         .profile-img {
@@ -638,11 +655,20 @@
             font-size: 1.1rem;
         }
 
+        .cert-item p {
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
         /* Footer */
         footer {
             text-align: center;
             padding: 40px;
             color: var(--text-secondary);
+        }
+
+        footer p {
+            margin: 8px 0;
         }
 
         /* Animations */
@@ -686,7 +712,15 @@
                 padding: 40px 20px;
             }
 
+            section h2 {
+                font-size: 2rem;
+            }
+
             .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -694,21 +728,44 @@
                 width: 200px;
                 height: 200px;
             }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
         }
 
-        /* Photo Edit Instructions Box */
-        .photo-instructions {
-            background: var(--bg-card);
-            border: 2px dashed var(--accent-cyan);
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 20px;
-            color: var(--text-secondary);
-        }
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2rem;
+            }
 
-        .photo-instructions h4 {
-            color: var(--accent-cyan);
-            margin-bottom: 10px;
+            header {
+                padding: 40px 20px;
+            }
+
+            section {
+                padding: 30px 15px;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .analytics-badge {
+                padding: 12px 20px;
+                font-size: 0.8rem;
+            }
+
+            .theme-toggle {
+                width: 50px;
+                height: 50px;
+            }
         }
     </style>
 </head>
@@ -716,20 +773,20 @@
     <div class="animated-bg"></div>
 
     <!-- Theme Toggle Button -->
-    <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle">
+    <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle" aria-label="Toggle dark/light theme">
         🌙
     </button>
 
     <!-- Analytics Badge -->
-    <div class="analytics-badge" onclick="showAnalytics()">
+    <div class="analytics-badge" onclick="showAnalytics()" role="button" tabindex="0" aria-label="View analytics">
         📊 <span id="view-count">0</span> Views
     </div>
 
     <!-- Analytics Modal -->
     <div class="modal-overlay" id="modal-overlay" onclick="hideAnalytics()"></div>
-    <div class="analytics-modal" id="analytics-modal">
-        <span class="close-modal" onclick="hideAnalytics()">×</span>
-        <h2 style="color: var(--accent-cyan); margin-bottom: 30px; font-size: 2rem;">📊 Portfolio Analytics</h2>
+    <div class="analytics-modal" id="analytics-modal" role="dialog" aria-labelledby="analytics-title">
+        <button class="close-modal" onclick="hideAnalytics()" aria-label="Close analytics">×</button>
+        <h2 id="analytics-title" style="color: var(--accent-cyan); margin-bottom: 30px; font-size: 2rem;">📊 Portfolio Analytics</h2>
         
         <div class="analytics-stat">
             <h3>Total Page Views</h3>
@@ -777,21 +834,22 @@
             <section id="about">
                 <h2><span class="section-icon">🤖</span>About Me</h2>
                 <div class="about-content">
-                   
-
-
                     <div>
-                        <p style="font-size: 1.2rem; line-height: 1.9; margin-bottom: 20px; color: var(--text-secondary);">
+                        <img src="https://via.placeholder.com/250" alt="Praneeth Dathu" class="profile-img">
+                    </div>
+                    <div class="about-text">
+                        <p>
                             I'm an AI student who loves building things with code. I enjoy solving real problems, especially for AI and data projects. 
-                            Currently pursuing my <strong style="color: var(--accent-cyan);">Master's in Artificial Intelligence at Leiden University</strong> with a GPA of 7.5, 
+                            Currently pursuing my <strong>Master's in Artificial Intelligence at Leiden University</strong> with a GPA of 7.5, 
                             I specialize in Machine Learning, Deep Learning (including Generative AI), and Reinforcement Learning.
                         </p>
-                        <p style="font-size: 1.2rem; line-height: 1.9; color: var(--text-secondary);">
-                            With professional experience as an <strong style="color: var(--accent-teal);">AI Researcher at Digital Ellanky</strong>, I've developed ML pipelines and predictive models that 
-                            contributed to a <strong style="color: var(--accent-cyan);">20% increase in client sales</strong>. I'm a quick learner and ready to help a team create something great.
+                        <p>
+                            With professional experience as an <strong>AI Researcher at Digital Ellanky</strong>, I've developed ML pipelines and predictive models that 
+                            contributed to a <strong>20% increase in client sales</strong>. I'm a quick learner and ready to help a team create something great.
                         </p>
-                        
- 
+                    </div>
+                </div>
+            </section>
 
             <!-- Skills Section -->
             <section id="skills">
@@ -940,7 +998,7 @@
                             <li>Designed AI-driven pipeline for campaign cost prediction and ROI visualization</li>
                             <li>Implemented predictive and clustering models improving targeting accuracy</li>
                             <li>Integrated models into analytics dashboard contributing to 20% increase in sales</li>
-                            <li><strong style="color: var(--accent-cyan);">Tech Stack:</strong> Python, Pandas, Scikit-learn, Google Analytics, SQL</li>
+                            <li><strong>Tech Stack:</strong> Python, Pandas, Scikit-learn, Google Analytics, SQL</li>
                         </ul>
                     </div>
                 </div>
@@ -973,16 +1031,16 @@
                 <h2><span class="section-icon">📜</span>Certificates & Achievements</h2>
                 <div class="cert-list">
                     <div class="cert-item">
-                        <strong>Web Development</strong><br>
-                        <span style="color: var(--text-secondary);">Internshala</span>
+                        <strong>Web Development</strong>
+                        <p>Internshala</p>
                     </div>
                     <div class="cert-item">
-                        <strong>Agile Methodology Virtual Experience</strong><br>
-                        <span style="color: var(--text-secondary);">Cognizant</span>
+                        <strong>Agile Methodology Virtual Experience</strong>
+                        <p>Cognizant</p>
                     </div>
                     <div class="cert-item">
-                        <strong>Digital Marketing Specialization</strong><br>
-                        <span style="color: var(--text-secondary);">Internshala (SEO, Google Analytics)</span>
+                        <strong>Digital Marketing Specialization</strong>
+                        <p>Internshala (SEO, Google Analytics)</p>
                     </div>
                 </div>
             </section>
@@ -997,21 +1055,19 @@
                     </div>
                     <div class="contact-item">
                         <span class="contact-icon">💼</span>
-                        <a href="https://www.linkedin.com/in/praneethdathu46/" target="_blank" onclick="trackClick('linkedin')">LinkedIn Profile</a>
+                        <a href="https://www.linkedin.com/in/praneethdathu46/" target="_blank" rel="noopener noreferrer" onclick="trackClick('linkedin')">LinkedIn Profile</a>
                     </div>
                     <div class="contact-item">
                         <span class="contact-icon">💻</span>
-                        <a href="https://github.com/Praneeth-496?tab=repositories" target="_blank" onclick="trackClick('github')">GitHub Portfolio</a>
+                        <a href="https://github.com/Praneeth-496?tab=repositories" target="_blank" rel="noopener noreferrer" onclick="trackClick('github')">GitHub Portfolio</a>
                     </div>
                 </div>
             </section>
         </div>
 
         <footer>
-            <p style="font-size: 1rem; margin-bottom: 10px;">&copy; 2025 Praneeth Dathu. Engineered with AI & Data Science.</p>
-            <p style="font-size: 0.9rem; color: var(--text-tertiary);">
-                <strong>Languages:</strong> English • Hindi • Telugu • Dutch (A1)
-            </p>
+            <p>&copy; 2025 Praneeth Dathu. Engineered with AI & Data Science.</p>
+            <p><strong>Languages:</strong> English • Hindi • Telugu • Dutch (A1)</p>
         </footer>
     </div>
 
